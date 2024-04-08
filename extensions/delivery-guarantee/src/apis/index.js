@@ -1,6 +1,6 @@
 import {
-  SEEL_SESSION_ID_STORAGE,
   SEEL_USER_ID_STORAGE,
+  SEEL_DEIVCE_ID_STORAGE,
 } from "../common/constant";
 import { convertGidToId, calculatePrices } from "../utils/index.js";
 import { v4 as uuidv4 } from "uuid";
@@ -108,15 +108,6 @@ export const constructCart = async ({ lines, shop }) => {
   return cartLines;
 };
 
-export const getOrCreateSessionId = async ({ storage }) => {
-  let sessionId = await storage.read(SEEL_SESSION_ID_STORAGE);
-  if (!sessionId) {
-    sessionId = uuidv4();
-    storage.write(SEEL_SESSION_ID_STORAGE, sessionId);
-  }
-  return sessionId;
-};
-
 export const getOrCreateUserId = async ({ storage }) => {
   let userId = await storage.read(SEEL_USER_ID_STORAGE);
   if (!userId) {
@@ -124,6 +115,15 @@ export const getOrCreateUserId = async ({ storage }) => {
     storage.write(SEEL_USER_ID_STORAGE, userId);
   }
   return userId;
+};
+
+export const getOrCreateDeviceId = async ({ storage }) => {
+  let deviceId = await storage.read(SEEL_DEIVCE_ID_STORAGE);
+  if (!deviceId) {
+    deviceId = uuidv4();
+    storage.write(SEEL_DEIVCE_ID_STORAGE, deviceId);
+  }
+  return deviceId;
 };
 
 export const updateCartAttributes = async (

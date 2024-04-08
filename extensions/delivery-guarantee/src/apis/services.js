@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { formatQuotation } from "../utils/index.js";
 
-export const getMerchantProfile = async (api) => {
+export const getMerchantConfig = async (api) => {
   const { shop } = api;
   const { myshopifyDomain } = shop;
   const resp = await fetch(
@@ -21,17 +21,17 @@ export const getMerchantProfile = async (api) => {
   }
 };
 
-export const getQuotation = async (
+export const createQuote = async (
   api,
-  { source, cartInfo, sessionId, userId },
+  { source, cartInfo, userId, deviceId },
 ) => {
   const payload = {
     source: source || "checkout",
     cart_info: cartInfo,
     customer_info: {
       timestamp_in_ms: Date.now(),
-      device_id: userId,
-      user_id: sessionId,
+      device_id: deviceId,
+      user_id: userId,
     },
     shop_domain: api?.shop?.myshopifyDomain || "",
   };

@@ -130,33 +130,28 @@ export const cleanCart = async (
 
 export const getInitialCheckboxStatus = async (
   api,
-  { profile, seelVariantMatchedWithQuotation },
+  { config, seelVariantMatchedWithQuotation },
 ) => {
   if (Boolean(seelVariantMatchedWithQuotation)) {
     return Boolean(seelVariantMatchedWithQuotation);
   } else {
-    return profile.defaultOpt === "true" || profile.defaultOpt === true;
+    return config.defaultOpt === "true" || config.defaultOpt === true;
   }
 };
 
-// 1. profile's status is default-on
+// 1. config's status is default-on
 // 1.1 seel variant in cart match with quotation
 // do nothing
 // 1.2 seel variant in cart not match with quotation
 // add quotation's variant to cart with quantity 1
-// 2. profile's status is default-off
+// 2. config's status is default-off
 // 2.1 seel variant in cart match with quotation
 // set checkbox initial status to active
 // 2.2 seel variant in cart not match with quotation
 // do nothing
 export const syncCartWithCheckboxStatus = async (
   api,
-  {
-    initialCheckboxStatus,
-    profile,
-    quotation,
-    seelVariantMatchedWithQuotation,
-  },
+  { initialCheckboxStatus, config, quotation, seelVariantMatchedWithQuotation },
 ) => {
   const { applyCartLinesChange } = api;
 
