@@ -2,7 +2,7 @@
 
 client_id = "40a9bbba818cecfd58dfaf2dec309fbd"
 name = "seal-app-dev"
-application_url = "https://insert-launched-fate-desk.trycloudflare.com"
+application_url = "https://skiing-letting-bacon-os.trycloudflare.com"
 embedded = true
 
 [build]
@@ -12,13 +12,13 @@ include_config_on_deploy = true
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "read_products,write_products"
+scopes = "read_customer_events,read_products,write_pixels,write_products"
 
 [auth]
 redirect_urls = [
-  "https://insert-launched-fate-desk.trycloudflare.com/auth/callback",
-  "https://insert-launched-fate-desk.trycloudflare.com/auth/shopify/callback",
-  "https://insert-launched-fate-desk.trycloudflare.com/api/auth/callback"
+  "https://skiing-letting-bacon-os.trycloudflare.com/auth/callback",
+  "https://skiing-letting-bacon-os.trycloudflare.com/auth/shopify/callback",
+  "https://skiing-letting-bacon-os.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

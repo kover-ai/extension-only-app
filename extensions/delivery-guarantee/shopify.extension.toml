@@ -7,15 +7,15 @@ api_version = "2024-01"
 
 [[extensions]]
 type = "ui_extension"
-name = "seal-checkout-extension"
-handle = "seal-checkout-extension"
+name = "Delivery Guarantee"
+handle = "delivery-guarantee"
 
 # Controls where in Shopify your extension will be injected,
 # and the file that contains your extension’s source code. Learn more:
 # https://shopify.dev/docs/api/checkout-ui-extensions/unstable/extension-targets-overview
 
 [[extensions.targeting]]
-module = "./src/Checkout.jsx"
+module = "./src/index.js"
 target = "purchase.checkout.delivery-address.render-after"
 
 [extensions.capabilities]
