@@ -24,24 +24,28 @@ import {
 export default extension(extensionTarget, async (root, api) => {
   const { cost, checkoutToken } = api;
 
-  // 1. Merchant Config and Session/User ID Retrieval
+  // 1. Merchant Config Retrieval
   const config = await getMerchantConfig(api).catch(console.log);
-  const userId = await getOrCreateUserId(api);
-  const deviceId = await getOrCreateDeviceId(api);
-
   if (config?.status !== "active") {
     return null;
   }
 
-  // 2. Cart Construction
-  // construct the cart based on the items in the current checkout.
-  // The cart object includes items, the checkout token, and the currency code.
+  // 2. Quote API input parameters preparation
+  // the main input parameters for the Quote API include: the request source,
+  // cart details, device ID, and user ID. The user ID is a temporary, session-level identifier,
+  // while the device ID is a persistent identifier obtained from SPO or user information,
+  // depending on the user's login status.
+
+  // 2.1 construct cart
   const items = await constructCart(api).catch(console.log);
   const cart = {
     items,
     token: checkoutToken.current,
     currency: cost.totalAmount.current.currencyCode,
   };
+  // 2.2 User/Device ID
+  const userId = await getOrCreateUserId(api);
+  const deviceId = await getOrCreateDeviceId(api);
 
   // 3. Quotation Retrieval
   const quotation = await createQuote(api, {
